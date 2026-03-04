@@ -158,7 +158,7 @@ def run_corrected_experiment():
     print("Two-Track Design: No-Lag (Scientific) + With-Lag (Practical)")
     print("=" * 70)
     
-    raw = pd.read_csv("/home/claude/wedding-demand-forecast/data/raw/master_raw.csv")
+    raw = pd.read_csv("data/raw/master.csv")
     df = engineer_features(raw)
     track_a, track_b = get_feature_sets_v2()
     
@@ -278,16 +278,16 @@ def run_corrected_experiment():
     # =========================================
     # SAVE RESULTS
     # =========================================
-    imp_df.to_csv("/home/claude/wedding-demand-forecast/results/feature_importance_v2.csv", index=False)
+    imp_df.to_csv("results/feature_importance.csv", index=False)
     
     # Save best predictions
     best_key_a = min(results_a.keys(), key=lambda k: results_a[k]['mean_rmse'])
     results_a[best_key_a]['predictions'].to_csv(
-        "/home/claude/wedding-demand-forecast/results/track_a_predictions.csv", index=False)
+        "results/track_a_predictions.csv", index=False)
     
     best_key_b = min(results_b.keys(), key=lambda k: results_b[k]['mean_rmse'])
     results_b[best_key_b]['predictions'].to_csv(
-        "/home/claude/wedding-demand-forecast/results/track_b_predictions.csv", index=False)
+        "results/track_b_predictions.csv", index=False)
     
     # =========================================
     # FINAL VERDICT
