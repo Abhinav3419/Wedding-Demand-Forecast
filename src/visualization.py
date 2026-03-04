@@ -137,7 +137,7 @@ def plot_correlation_scatter(df, save_path):
 
 def plot_feature_importance(save_path):
     """Figure 3: Feature importance bar chart highlighting cultural features."""
-    imp_df = pd.read_csv("/home/claude/wedding-demand-forecast/results/feature_importance_v2.csv")
+    imp_df = pd.read_csv("results/feature_importance.csv")
     imp_df = imp_df.head(16)  # Top 16
     
     cultural_kw = ['muhurat', 'favorable', 'hijri', 'pitru', 'kharmas', 'mal_maas']
@@ -259,7 +259,7 @@ def plot_seasonal_muhurat_heatmap(df, save_path):
 
 def plot_predictions_vs_actual(save_path):
     """Figure 6: Time series of actual vs predicted for best model."""
-    pred_df = pd.read_csv("/home/claude/wedding-demand-forecast/results/track_a_predictions.csv")
+    pred_df = pd.read_csv("results/track_a_predictions.csv")
     
     pred_df['date'] = pd.to_datetime(pred_df[['year', 'month']].assign(day=15))
     pred_df = pred_df.sort_values('date')
@@ -302,10 +302,10 @@ def generate_all_figures():
     print("GENERATING PUBLICATION FIGURES")
     print("=" * 70)
     
-    raw = pd.read_csv("/home/claude/wedding-demand-forecast/data/raw/master_raw.csv")
+    raw = pd.read_csv("data/raw/master.csv")
     df = engineer_features(raw)
     
-    base = "/home/claude/wedding-demand-forecast/results"
+    base = "results"
     
     print()
     plot_demand_vs_muhurat(raw, f"{base}/fig1_demand_vs_muhurat.png")
