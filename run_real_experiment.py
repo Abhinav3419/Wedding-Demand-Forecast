@@ -26,11 +26,13 @@ import warnings
 warnings.filterwarnings('ignore')
 
 import sys, os
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src'))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'src'))
 from real_trends_loader import build_master_with_real_trends
 from feature_engineering import engineer_features
 
-RESULTS_DIR = "/home/claude/wedding-demand-forecast/results"
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+RESULTS_DIR = os.path.join(PROJECT_ROOT, "results")
 COLORS = {'primary':'#0D3B66','accent':'#F4A261','green':'#2A9D8F',
           'red':'#E76F51','purple':'#6A4C93','gray':'#8D99AE'}
 
@@ -278,7 +280,7 @@ def main():
     
     # 1. Build master dataset with real trends
     raw = build_master_with_real_trends()
-    raw.to_csv(f"{RESULTS_DIR}/../data/raw/master_real.csv", index=False)
+    raw.to_csv(os.path.join(PROJECT_ROOT, "data", "raw", "master.csv"), index=False)
     
     # 2. Engineer features
     print("\n" + "=" * 70)
