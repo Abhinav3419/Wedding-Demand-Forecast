@@ -247,13 +247,13 @@ def prepare_train_data(df: pd.DataFrame, feature_cols: list
 
 if __name__ == "__main__":
     # Load raw data
-    raw = pd.read_csv("/home/claude/wedding-demand-forecast/data/raw/master_raw.csv")
+    raw = pd.read_csv("data/raw/master.csv")
     
     # Engineer features
     featured = engineer_features(raw)
     
     # Save processed data
-    featured.to_csv("/home/claude/wedding-demand-forecast/data/processed/features_master.csv", index=False)
+    featured.to_csv("data/processed/features_master.csv", index=False)
     print(f"\n💾 Saved to data/processed/features_master.csv")
     
     # Show feature sets
