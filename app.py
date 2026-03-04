@@ -35,10 +35,10 @@ st.markdown("---")
 @st.cache_data
 def load_data():
     """Load and prepare all data."""
-    from muhurat_data import build_master_dataset
-    from feature_engineering import engineer_features, get_feature_sets
+    from real_trends_loader import build_master_with_real_trends
+    from feature_engineering import engineer_features
     
-    raw = build_master_dataset()
+    raw = build_master_with_real_trends()
     featured = engineer_features(raw)
     return raw, featured
 
@@ -107,7 +107,7 @@ st.sidebar.markdown(
 try:
     raw, featured = load_data()
 except Exception:
-    st.error("Run `python src/muhurat_data.py` first to generate data.")
+    st.error("Data loading failed. Ensure Google Trends CSV files exist in data/raw/ folder.")
     st.stop()
 
 # Define feature sets
